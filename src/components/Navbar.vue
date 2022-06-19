@@ -15,10 +15,15 @@
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link to="/" class="nav-link">Login</router-link>
+            <router-link to="/login" class="nav-link">Login</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/register" class="nav-link">Register</router-link>
+          </li>
+          <li class="nav-item">
+            <button @click="handleLogout" type="button" class="btn btn-light">
+              Logout
+            </button>
           </li>
         </ul>
       </div>
@@ -28,4 +33,14 @@
 
 <script setup>
 import { RouterLink } from 'vue-router';
+import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/user';
+
+const userStore = useUserStore();
+const router = useRouter();
+
+const handleLogout = () => {
+  userStore.logout();
+  router.push('/login');
+};
 </script>

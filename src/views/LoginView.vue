@@ -52,7 +52,7 @@ const userPassword = ref('');
 
 const handleSubmit = async () => {
   try {
-    await userStore.register({
+    await userStore.login({
       email: userEmail.value,
       password: userPassword.value,
     });
