@@ -1,5 +1,8 @@
 <template>
-  <div class="d-flex justify-content-center align-items-center vh-100">
+  <div
+    class="d-flex flex-column justify-content-center align-items-center vh-100"
+  >
+    <h2 class="mb-5">Login Page</h2>
     <div class="card py-3" style="width: 25rem">
       <div class="card-body">
         <form @submit.prevent="handleSubmit">

@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from 'firebase/auth';
 
 import { auth } from '../firebase/config';
@@ -10,10 +11,21 @@ import { auth } from '../firebase/config';
 export const useUserStore = defineStore({
   id: 'user',
   state: () => ({
-    user: null,
+    user: {},
   }),
 
   actions: {
+    init() {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          this.user.id = user.uid;
+          this.user.email = user.email;
+        } else {
+          this.user = null;
+        }
+      });
+    },
+
     async register({ email, password }) {
       console.log('register');
       const res = await createUserWithEmailAndPassword(auth, email, password);

@@ -10,15 +10,20 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/about">Features</router-link>
+            <router-link class="nav-link" to="/about">About</router-link>
           </li>
         </ul>
-        <ul class="navbar-nav">
+        <ul v-if="!userStore.user" class="navbar-nav">
           <li class="nav-item">
             <router-link to="/login" class="nav-link">Login</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/register" class="nav-link">Register</router-link>
+          </li>
+        </ul>
+        <ul v-if="userStore.user" class="navbar-nav">
+          <li class="nav-item">
+            <span class="nav-link">{{ userStore.user.email }}</span>
           </li>
           <li class="nav-item">
             <button @click="handleLogout" type="button" class="btn btn-light">
